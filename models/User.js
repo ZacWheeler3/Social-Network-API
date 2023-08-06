@@ -11,20 +11,25 @@ const userSchema = new Schema({
         type: String,
         required: true,
         unique: true,
-        match: [/.+@.+\..+{2}/, `is not an email address` ]
+        match: [/.+@.+\..+{2}/, `is not an email address` ],
     },
     thoughts:[
         {
         type: Schema.Types.ObjectId,
-        ref: 'Thought'   
-        }
+        ref: 'Thought',   
+        },
     ],
     friends: [
         {
             type: Schema.Types.ObjectId,
-        }
-    ]
+            ref: "User",
+        },
+    ],
 });
+
+userSchema.virtual('friendCount').get(function() {
+    return this.friends.length;
+})
 
 const User = model('User', userSchema);
 
