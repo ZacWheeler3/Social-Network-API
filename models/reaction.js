@@ -1,5 +1,5 @@
-const {Schema, Model } = require('mongoose'); 
-//ask Dave about this section. Model or types? layout?
+const {Schema, Types, Model } = require('mongoose'); 
+
 const reactionSchema = new Schema(
 {
     reactionId: {
